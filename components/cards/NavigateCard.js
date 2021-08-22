@@ -47,7 +47,7 @@ const NavigateCard = () => {
             >
                 <TouchableOpacity
                     style={tw`flex flex-row justify-between bg-black w-24 px-4 py-3 rounded-full`}
-                    onPress={() => navigation.navigate("CarOptions")}
+                    onPress={() => navigation.navigate("RideOptionsCard")}
                 >
                     <Icon name="car" type="font-awesome" color="white" size={ 16 }/>
                     <Text style={tw`text-white text-center`}>Rides</Text>

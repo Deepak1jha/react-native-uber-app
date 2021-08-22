@@ -28,8 +28,6 @@ const HomeScreen = () => {
                 enablePoweredByContainer={ false }
                 minLength={ 2 }
                 onPress={ (data, details = null) => {
-                    console.log(data.description),
-                        console.log(details.geometry.location);
                     dispatch(
                         setOrigin({
                             location : details.geometry.location,

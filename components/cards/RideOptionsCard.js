@@ -39,7 +39,7 @@ const RideOptionsCard = () => {
     const travelTime = useSelector(selectTravelTimeInformation);
 
     return (
-        <SafeAreaView style={ tw`bg-white flex-grow` }>
+        <View style={ tw`bg-white flex-grow`}>
             <View>
                 <TouchableOpacity
                     style={ tw`absolute top-3 left-5 z-50 p-3 rounded-full` }
@@ -69,15 +69,9 @@ const RideOptionsCard = () => {
                             <Text style={ tw`text-xl font-semibold` }>{ title }</Text>
                             <Text> { travelTime?.duration?.text }</Text>
                         </View>
-                        {/*<Text style={ tw`text-xl` }>*/}
-                        {/*    { new Intl.NumberFormat("en-ca", {*/}
-                        {/*        style : "currency",*/}
-                        {/*        currency : "CAD",*/}
-                        {/*    }).format(*/}
-                        {/*        (travelTime?.duration?.value * SURGE_CHARGE_RATE * multiplier) /*/}
-                        {/*        100*/}
-                        {/*    ) }*/}
-                        {/*</Text>*/}
+                        <Text style={ tw`text-xl` }>
+                            {(travelTime?.duration.value * SURGE_CHARGE_RATE * multiplier)/10}
+                        </Text>
                     </TouchableOpacity>
                 ) }
             />
@@ -91,7 +85,7 @@ const RideOptionsCard = () => {
                     </Text>
                 </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </View>
     );
 };
 

@@ -33,7 +33,6 @@ const Maps = () => {
         })();
     }, [origin, destination, GOOGLE_MAPS_API_KEY]);
 
-
     return (
         <MapView
             style={ tw`flex-1` }

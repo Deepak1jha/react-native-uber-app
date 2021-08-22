@@ -5,12 +5,12 @@ import NavOptions from "../../components/navOptions/NavOptions";
 import Constants from "expo-constants";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_API_KEY } from "@env"
+import { setDestination, setOrigin } from "../../slices/navSlices";
+import { useDispatch } from "react-redux";
 
 const HomeScreen = () => {
 
-    console.log(GOOGLE_MAPS_API_KEY)
-    console.log(GOOGLE_MAPS_API_KEY)
-    console.log(GOOGLE_MAPS_API_KEY)
+    const dispatch = useDispatch();
     return (
         <View style={ { marginTop : Constants.statusBarHeight, paddingLeft : 15 } }>
             <View style={ tw`p-5` }>
@@ -18,28 +18,27 @@ const HomeScreen = () => {
                        source={ { uri : "https://links.papareact.com/gzs" } }/>
             </View>
             <GooglePlacesAutocomplete
-                styles={ {
-                    container : {
-                        flex : 0
-                    },
-                    textInput : {
-                        fontSize : 18
-                    }
-                } }
-                minLength={ 2 }
-                enablePoweredByContainer={ false }
-                onPress={(data,detail=null)=>{
-                    console.log(data)
-                    console.log(detail)
-                }}
-                returnKeyType={"search"}
-                placeholder={ "Where from" }
+                placeholder="Where From?"
+                nearbyPlacesAPI="GooglePlacesSearch"
+                returnKeyType={ "search" }
+                fetchDetails={ true }
                 debounce={ 400 }
-                nearbyPlacesAPI={ "GooglePlacesSearch" }
-                query={ {
-                    key : GOOGLE_MAPS_API_KEY,
-                    language : "en"
-                } }/>
+                styles={ { container : { flex : 0 }, textInput : { fontSize : 18 } } }
+                query={ { key : GOOGLE_MAPS_API_KEY, language : "en" } }
+                enablePoweredByContainer={ false }
+                minLength={ 2 }
+                onPress={ (data, details = null) => {
+                    console.log(data.description),
+                        console.log(details.geometry.location);
+                    dispatch(
+                        setOrigin({
+                            location : details.geometry.location,
+                            description : data.description,
+                        })
+                    );
+                    dispatch(setDestination(null));
+                } }
+            />
             <NavOptions/>
         </View>
     );

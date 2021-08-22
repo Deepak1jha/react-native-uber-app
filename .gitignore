@@ -11,4 +11,3 @@ web-build/
 .idea/
 # macOS
 .DS_Store
-.env

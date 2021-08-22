@@ -6,6 +6,7 @@ import { setDestination } from "../../slices/navSlices";
 import { GOOGLE_MAPS_API_KEY } from "@env"
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import NavFavorite from "../navFavorite/NavFavorite";
 
 const NavigateCard = () => {
 
@@ -38,6 +39,7 @@ const NavigateCard = () => {
                         } }
                     />
                 </View>
+                <NavFavorite/>
             </View>
         </View>
     );
